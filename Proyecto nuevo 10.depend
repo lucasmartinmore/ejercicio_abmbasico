@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1620187132 source:c:\users\lucas\desktop\laboratorio-programacion\proyecto nuevo 10\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Alumno.h"
+
+1620186967 c:\users\lucas\desktop\laboratorio-programacion\proyecto nuevo 10\alumno.h
+
+1620187139 source:c:\users\lucas\desktop\laboratorio-programacion\proyecto nuevo 10\alumno.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Alumno.h"
+
