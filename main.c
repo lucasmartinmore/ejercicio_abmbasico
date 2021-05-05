@@ -16,6 +16,8 @@ int main()
     int posicionBaja;
     int posicionModificar;
     int legajo=1000;
+    int flagInicializar=0;
+    int flagAlta=0;
     int error;
     do
     {
@@ -26,62 +28,98 @@ int main()
             if(inicializarAlumnos(alumnos, TAM)==1)
             {
                 printf("Inicializado con exito\n");
+                flagInicializar=1;
             }
             break;
         case 2:
-            printf("ACA HAY QUE DAR ALTA\n");
-            posicionAlta=buscarAlumnoVacio(alumnos, TAM, &error);
-            if(error==1)
+            if(flagInicializar!=1)
             {
-                altaAlumno(alumnos, TAM, posicionAlta,legajo);
-                legajo++;
+                printf("Hay que inicializar para cargar\n");
             }
             else
             {
-                printf("No encontre espacio vacio\n");
+                posicionAlta=buscarAlumnoVacio(alumnos, TAM, &error);
+                if(error==1)
+                {
+                    flagAlta=1;
+                    altaAlumno(alumnos, TAM, posicionAlta,legajo);
+                    legajo++;
+                }
+                else
+                {
+                    printf("No encontre espacio vacio\n");
+                }
             }
             break;
         case 3:
-            mostrarAlumnos(alumnos,TAM);
-            break;
-        case 4:
-            posicionBaja=bajaAlumno(alumnos, TAM);
-            if(posicionBaja==1)
+            if(flagAlta!=1)
             {
-                printf("Baja exitosa\n");
+                printf("No hay alumnos cargados\n");
             }
             else
             {
-                printf("No se encontro la posicion\n");
+                mostrarAlumnos(alumnos,TAM);
+            }
+            break;
+        case 4:
+            if(flagAlta!=1)
+            {
+                printf("No hay alumnos cargados\n");
+            }
+            else
+            {
+                posicionBaja=bajaAlumno(alumnos, TAM);
+                if(posicionBaja==1)
+                {
+                    printf("Baja exitosa\n");
+                }
+                else
+                {
+                    printf("No se encontro la posicion\n");
+                }
             }
             break;
         case 5:
-            posicionModificar = moficicarAlumno(alumnos, TAM);
-            if(posicionModificar!=1)
-               {
-                   printf("No se pudo moficar\n");
-               }
-            break;
-        case 6:
-            switch(subMenuOrdenar())
+            if(flagAlta!=1)
             {
-            case 1:
-                ordenarPorApellido(alumnos, TAM);
-                printf("Ordenamiento por apellido exitoso\n");
-                break;
-            case 2:
-                ordenarPorEdad(alumnos, TAM);
-                printf("Ordenamiento por edad exitoso\n");
-                break;
-            case 3:
-                ordenarPorPromedio(alumnos, TAM);
-                printf("Ordenamiento por promedio exitoso\n");
-                break;
+                printf("No hay alumnos cargados\n");
+            }
+            else
+            {
+                posicionModificar = moficicarAlumno(alumnos, TAM);
+                if(posicionModificar!=1)
+                {
+                    printf("No se pudo moficar\n");
+                }
             }
             break;
-            default:
-                printf("Opcion incorrecta\n");
-                break;
+        case 6:
+            if(flagAlta!=1)
+            {
+                printf("No hay alumnos cargados\n");
+            }
+            else
+            {
+                switch(subMenuOrdenar())
+                {
+                case 1:
+                    ordenarPorApellido(alumnos, TAM);
+                    printf("Ordenamiento por apellido exitoso\n");
+                    break;
+                case 2:
+                    ordenarPorEdad(alumnos, TAM);
+                    printf("Ordenamiento por edad exitoso\n");
+                    break;
+                case 3:
+                    ordenarPorPromedio(alumnos, TAM);
+                    printf("Ordenamiento por promedio exitoso\n");
+                    break;
+                }
+            }
+            break;
+        default:
+            printf("Opcion incorrecta\n");
+            break;
         }
         system("pause");
     }

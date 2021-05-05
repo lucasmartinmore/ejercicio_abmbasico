@@ -170,6 +170,7 @@ int bajaAlumno(eAlumno alumnos[], int tam)
             {
                 error=1;
                 alumnos[i].isEmpty=1;
+                alumnos[i].legajo=' ';
             }
         }
     }
@@ -185,7 +186,7 @@ int moficicarAlumno(eAlumno alumnos[], int tam)
     int error=-1;
     if(alumnos!=NULL && tam>0)
     {
-        printf("Ingrese legajo a dar de baja: ");
+        printf("Ingrese legajo a modificar: ");
         scanf("%d", &posicion);
         while(posicion<1000)
         {
